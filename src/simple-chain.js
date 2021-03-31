@@ -6,34 +6,34 @@ const CustomError = require("../extensions/custom-error");
   },
   addLink(value) {
     if (value === undefined){
-      throw new Error();
+      this.arr.push(`( )`);
     }
-    else this.arr.push(value);
-  return this;
+    else this.arr.push(`( ${value} )`);
+    return this;
   },
   removeLink(position) {
-    if (this.arr[position - 1] === undefined || typeof position !== "number"){
+    if (!this.arr[position - 1]){
+      this.arr.length = 0;
       throw new Error();
     }
-    else this.arr.splice(position-1, 1);
-    return this;
+    else {
+      this.arr.splice(position-1, 1);
+      return this;
+    }
   },
   reverseChain() {
    this.arr.reverse();
    return this;
   },
   finishChain() {
-    let result = this.arr.reduce((acc, el, i) => {
-      if (i === 0) {
-        acc += `( ${el} )`;
-        return acc;
-      } else {
-        acc += `~~( ${el} )`;
-        return acc;
-      }
-    }, "");
+  if(this.arr.length === 0){
+    throw new Error();
+  }
+  else {
+    let result = this.arr.join("~~");
     this.arr = [];
     return result;
+    }
   }
 };
 console.log(chainMaker);
