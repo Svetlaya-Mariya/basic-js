@@ -16,7 +16,7 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function renameFiles(/* names */) {
-  throw new NotImplementedError('Not implemented');
+  throw new NotImplementedError('Invalid date!');
   // remove line with error and write your code here
 }
 
