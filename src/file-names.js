@@ -15,9 +15,18 @@ const { NotImplementedError } = require('../extensions/index.js');
  * the output should be ["file", "file(1)", "image", "file(1)(1)", "file(2)"]
  *
  */
-function renameFiles(/* names */) {
-  throw new NotImplementedError('Invalid date!');
-  // remove line with error and write your code here
+function renameFiles(names) {
+  const newArray = [];
+  const obj = {};
+  names.forEach(item => {
+    if(newArray.includes(item)){
+      obj[item] = obj[item] || 1;
+      let newNameItem = `${item}(${obj[item]++})`;
+      newArray.push(newNameItem);
+    }
+    else newArray.push(item);
+  })
+  return newArray;
 }
 
 module.exports = {
